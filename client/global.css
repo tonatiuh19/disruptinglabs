@@ -1,0 +1,290 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /**
+   * Tailwind CSS theme
+   * tailwind.config.ts expects the following color variables to be expressed as HSL values.
+   * A different format will require also updating the theme in tailwind.config.ts.
+  */
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 220 13% 18%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 13% 18%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 13% 18%;
+
+    --primary: 270 100% 65%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 220 13% 18%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 270 100% 65%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 270 100% 65%;
+
+    --radius: 0.75rem;
+
+    --disrupting-purple: 350 65% 40%;
+    --disrupting-blue: 350 70% 35%;
+    --disrupting-cyan: 350 60% 55%;
+    --disrupting-pink: 350 75% 50%;
+    --disrupting-dark: 220 15% 12%;
+    --disrupting-gray: 215 20% 50%;
+    --disrupting-light-gray: 210 40% 98%;
+    --disrupting-accent: 350 65% 48%;
+    --wine: 347 77% 35%;
+    --burgundy: 352 65% 32%;
+  }
+
+  .dark {
+    --background: 220 13% 18%;
+    --foreground: 0 0% 95%;
+
+    --card: 220 13% 18%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 220 13% 18%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 270 100% 65%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 0 0% 95%;
+
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 270 100% 65%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 0 0% 95%;
+
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 270 100% 65%;
+
+    --disrupting-purple: 350 65% 55%;
+    --disrupting-blue: 350 70% 50%;
+    --disrupting-cyan: 350 60% 65%;
+    --disrupting-pink: 350 75% 60%;
+    --disrupting-dark: 220 15% 12%;
+    --disrupting-gray: 215 20% 65%;
+    --disrupting-light-gray: 217 33% 17%;
+    --disrupting-accent: 350 65% 58%;
+    --wine: 347 77% 45%;
+    --burgundy: 352 65% 42%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  .bg-grid-slate-100\/\[0\.02\] {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(15 23 42 / 0.04)'%3e%3cpath d='m0 .5h32m-32 32v-32'/%3e%3c/svg%3e");
+  }
+}
+
+@layer utilities {
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-float-slow {
+    animation: float 4s ease-in-out infinite;
+  }
+
+  .animate-glow-wine {
+    animation: glowWine 2s ease-in-out infinite;
+  }
+
+  .animate-shimmer {
+    animation: shimmer 3s ease-in-out infinite;
+  }
+
+  .animate-pulse-slow {
+    animation: pulseSlow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes glowWine {
+    0%, 100% {
+      box-shadow: 0 0 20px hsl(var(--wine)), 0 0 40px hsl(var(--wine) / 0.5);
+    }
+    50% {
+      box-shadow: 0 0 30px hsl(var(--wine)), 0 0 60px hsl(var(--wine) / 0.7);
+    }
+  }
+
+  @keyframes shimmer {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+
+  @keyframes pulseSlow {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.8;
+    }
+  }
+
+  @keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  @keyframes float-slow-1 {
+    0%, 100% {
+      transform: translateY(0px) translateX(0px);
+      opacity: 0.3;
+    }
+    25% {
+      transform: translateY(-30px) translateX(20px);
+      opacity: 0.5;
+    }
+    50% {
+      transform: translateY(-60px) translateX(-20px);
+      opacity: 0.3;
+    }
+    75% {
+      transform: translateY(-30px) translateX(-40px);
+      opacity: 0.4;
+    }
+  }
+
+  @keyframes float-slow-2 {
+    0%, 100% {
+      transform: translateY(0px) translateX(0px);
+      opacity: 0.4;
+    }
+    33% {
+      transform: translateY(-40px) translateX(-30px);
+      opacity: 0.6;
+    }
+    66% {
+      transform: translateY(-50px) translateX(40px);
+      opacity: 0.35;
+    }
+  }
+
+  @keyframes float-slow-3 {
+    0%, 100% {
+      transform: translateY(0px) translateX(0px);
+      opacity: 0.25;
+    }
+    50% {
+      transform: translateY(-80px) translateX(50px);
+      opacity: 0.5;
+    }
+  }
+
+  @keyframes rotate-slow {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes textReveal {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes borderFlow {
+    0% {
+      background-position: 0% 0%;
+    }
+    100% {
+      background-position: 100% 100%;
+    }
+  }
+
+  @keyframes glow-pulse {
+    0%, 100% {
+      filter: drop-shadow(0 0 10px hsl(var(--wine) / 0.5));
+    }
+    50% {
+      filter: drop-shadow(0 0 30px hsl(var(--wine) / 0.8)) drop-shadow(0 0 60px hsl(var(--wine) / 0.4));
+    }
+  }
+
+  .animate-gradient-shift {
+    background-size: 200% 200%;
+    animation: gradientShift 8s ease infinite;
+  }
+
+  .animate-float-1 {
+    animation: float-slow-1 15s ease-in-out infinite;
+  }
+
+  .animate-float-2 {
+    animation: float-slow-2 18s ease-in-out infinite;
+  }
+
+  .animate-float-3 {
+    animation: float-slow-3 20s ease-in-out infinite;
+  }
+
+  .animate-rotate-slow {
+    animation: rotate-slow 20s linear infinite;
+  }
+
+  .animate-text-reveal {
+    animation: textReveal 0.8s ease-out forwards;
+  }
+
+  .animate-glow-pulse {
+    animation: glow-pulse 3s ease-in-out infinite;
+  }
+}
