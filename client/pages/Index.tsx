@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import Header from "@/components/Header";
+import FloatingContactButton from "@/components/FloatingContactButton";
 import BrandsCarousel from "@/components/BrandsCarousel";
 import {
   ArrowRight,
@@ -15,7 +15,7 @@ import {
   Star,
   BarChart,
   Heart,
-  Target
+  Target,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useReachOutModal } from "@/components/ReachOutModal";
@@ -24,89 +24,136 @@ export default function Index() {
   const { openModal } = useReachOutModal();
   return (
     <div className="min-h-screen bg-disrupting-dark">
-      <Header />
-      
+      <FloatingContactButton />
+
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center pt-16 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-disrupting-dark">
-        {/* Animated Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-wine/5 via-burgundy/10 to-wine/5 animate-gradient-shift" style={{'backgroundSize': '400% 400%'}}>
-          {/* Floating Geometric Shapes with enhanced animations */}
-          <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-wine/20 to-burgundy/20 rounded-full blur-xl animate-float-1 animate-glow-pulse"></div>
-          <div className="absolute top-40 right-20 w-48 h-48 bg-gradient-to-br from-wine/15 to-pink-500/15 rounded-full blur-2xl animate-float-2 animate-glow-pulse" style={{'animationDelay': '1s'}}></div>
-          <div className="absolute bottom-20 left-1/4 w-24 h-24 bg-gradient-to-br from-burgundy/25 to-wine/25 rounded-full blur-lg animate-float-3" style={{'animationDelay': '0.5s'}}></div>
-          <div className="absolute bottom-40 right-1/3 w-36 h-36 bg-gradient-to-br from-pink-500/20 to-burgundy/20 rounded-full blur-xl animate-float-1" style={{'animationDelay': '2s'}}></div>
+      <section className="relative min-h-screen flex items-center justify-center pt-8 md:pt-16 pb-16 md:pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-disrupting-dark">
+        {/* Background Video for Desktop */}
+        <div className="absolute inset-0 hidden md:block">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover opacity-60"
+          >
+            <source
+              src="https://garbrix.com/boda/assets/videos/6153453-sd_960_506_25fps.mp4"
+              type="video/mp4"
+            />
+            {/* Fallback to animated background if video doesn't load */}
+          </video>
+          <div className="absolute inset-0 bg-gradient-to-br from-disrupting-dark/60 via-disrupting-dark/50 to-wine/30"></div>
+        </div>
 
-          {/* Additional floating orbs */}
-          <div className="absolute top-1/3 right-1/4 w-40 h-40 bg-gradient-to-br from-wine/10 to-transparent rounded-full blur-3xl animate-float-2 opacity-50" style={{'animationDelay': '3s'}}></div>
-          <div className="absolute bottom-1/3 left-1/3 w-28 h-28 bg-gradient-to-br from-pink-500/15 to-wine/15 rounded-full blur-2xl animate-float-3" style={{'animationDelay': '1.5s'}}></div>
+        {/* Background Image for Mobile */}
+        <div className="absolute inset-0 md:hidden">
+          <img
+            src="https://garbrix.com/boda/assets/images/pexels-cottonbro-6153343.jpg"
+            alt="Hero background"
+            className="w-full h-full object-cover object-center opacity-70"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-disrupting-dark/70 via-disrupting-dark/60 to-wine/40"></div>
+        </div>
 
+        {/* Animated Background (fallback and additional effects) */}
+        <div
+          className="absolute inset-0 bg-gradient-to-br from-wine/5 via-burgundy/10 to-wine/5 animate-gradient-shift pointer-events-none"
+          style={{ backgroundSize: "400% 400%" }}
+        >
           {/* Grid Pattern */}
           <div className="absolute inset-0 bg-grid-slate-100/[0.02] bg-[size:20px_20px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]"></div>
 
           {/* Animated radial gradient overlay */}
-          <div className="absolute inset-0 opacity-30 animate-pulse-slow" style={{'background': 'radial-gradient(circle at 50% 50%, hsl(var(--wine) / 0.1) 0%, transparent 70%)'}}></div>
+          <div
+            className="absolute inset-0 opacity-30 animate-pulse-slow"
+            style={{
+              background:
+                "radial-gradient(circle at 50% 50%, hsl(var(--wine) / 0.1) 0%, transparent 70%)",
+            }}
+          ></div>
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="text-center max-w-5xl mx-auto">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-wine/20 backdrop-blur-sm border border-wine/40 rounded-full text-sm font-medium text-pink-300 mb-8 shadow-lg animate-text-reveal hover:shadow-lg hover:shadow-wine/50 transition-all duration-300" style={{'animationDelay': '0.1s'}}>
-              <div className="w-2 h-2 bg-wine rounded-full animate-pulse"></div>
-              Disruptive Innovation • Measurable Results
-            </div>
-
             {/* Main Heading */}
-            <h1 className="text-6xl sm:text-7xl lg:text-8xl xl:text-9xl font-black text-white mb-8 leading-[0.9] tracking-tight">
-              <span className="block animate-text-reveal" style={{'animationDelay': '0.2s'}}>Transform With</span>
-              <span className="block bg-gradient-to-r from-wine via-pink-400 to-burgundy bg-clip-text text-transparent animate-shimmer drop-shadow-lg animate-glow-pulse" style={{'animationDelay': '0.3s'}}>
+            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black text-white mb-6 md:mb-8 leading-[0.95] md:leading-[0.9] tracking-tight px-2">
+              <span
+                className="block animate-text-reveal"
+                style={{ animationDelay: "0.2s" }}
+              >
+                Transform With
+              </span>
+              <span
+                className="block bg-gradient-to-r from-wine via-pink-400 to-burgundy bg-clip-text text-transparent animate-shimmer drop-shadow-lg animate-glow-pulse"
+                style={{ animationDelay: "0.3s" }}
+              >
                 Disrupting Labs
               </span>
             </h1>
 
             {/* Subtitle */}
-            <p className="text-2xl sm:text-3xl lg:text-4xl text-pink-200 mb-6 leading-relaxed max-w-4xl mx-auto font-light animate-text-reveal" style={{'animationDelay': '0.4s'}}>
+            <p
+              className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-pink-200 mb-4 md:mb-6 leading-relaxed max-w-4xl mx-auto font-light animate-text-reveal px-2"
+              style={{ animationDelay: "0.4s" }}
+            >
               Revolutionary solutions for forward-thinking teams
             </p>
-            <p className="text-lg sm:text-xl text-white/70 mb-12 leading-relaxed max-w-4xl mx-auto animate-text-reveal" style={{'animationDelay': '0.5s'}}>
-              We leverage cutting-edge AI and bold design to transform your digital presence
+            <p
+              className="text-base sm:text-lg md:text-xl text-white/70 mb-8 md:mb-12 leading-relaxed max-w-4xl mx-auto animate-text-reveal px-2"
+              style={{ animationDelay: "0.5s" }}
+            >
+              We leverage cutting-edge AI and bold design to transform your
+              digital presence
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16 animate-text-reveal" style={{'animationDelay': '0.6s'}}>
-              <Button onClick={openModal} size="lg" className="group relative bg-gradient-to-r from-wine to-burgundy hover:from-wine/85 hover:to-burgundy/85 text-white px-12 py-8 text-xl sm:text-2xl font-bold rounded-2xl shadow-2xl shadow-wine/40 transform transition-all duration-300 hover:scale-105 hover:shadow-wine/70 overflow-hidden hover:animate-glow-pulse">
+            <div
+              className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center mb-12 md:mb-16 animate-text-reveal px-2"
+              style={{ animationDelay: "0.6s" }}
+            >
+              <Button
+                onClick={openModal}
+                size="lg"
+                className="group relative bg-gradient-to-r from-wine to-burgundy hover:from-wine/85 hover:to-burgundy/85 text-white px-8 py-6 md:px-12 md:py-8 text-lg sm:text-xl md:text-2xl font-bold rounded-2xl shadow-2xl shadow-wine/40 transform transition-all duration-300 hover:scale-105 hover:shadow-wine/70 overflow-hidden hover:animate-glow-pulse"
+              >
                 <div className="absolute inset-0 bg-gradient-to-r from-pink-600 via-wine to-burgundy opacity-0 group-hover:opacity-50 transition-opacity duration-300 blur-md"></div>
-                <span className="relative z-10 flex items-center">
+                <span className="relative z-10 flex items-center justify-center">
                   Start Disrupting
-                  <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-2 transition-transform" />
+                  <ArrowRight className="ml-2 md:ml-3 h-5 w-5 md:h-6 md:w-6 group-hover:translate-x-2 transition-transform" />
                 </span>
-              </Button>
-
-              <Button size="lg" variant="outline" className="group border-2 border-wine/40 text-white hover:bg-wine/15 px-12 py-8 text-xl sm:text-2xl font-bold rounded-2xl backdrop-blur-sm bg-white/5 shadow-xl transform transition-all duration-300 hover:scale-105 hover:border-wine/70 hover:shadow-wine/40 hover:animate-glow-pulse">
-                <Globe className="mr-3 h-6 w-6 group-hover:rotate-12 transition-transform" />
-                Learn More
               </Button>
             </div>
 
             {/* Trust Indicators */}
-            <div className="flex flex-wrap justify-center gap-4 lg:gap-6 animate-text-reveal" style={{'animationDelay': '0.7s'}}>
-              <div className="flex items-center gap-3 px-6 py-3 bg-wine/20 backdrop-blur-md border border-wine/40 rounded-full shadow-lg hover:shadow-wine/40 transition-all duration-300 hover:scale-105 hover:border-wine/70 hover:bg-wine/30">
-                <Award className="w-5 h-5 text-pink-300" />
-                <span className="text-sm sm:text-base font-semibold text-white">Industry Leaders</span>
+            <div
+              className="flex flex-wrap justify-center gap-3 md:gap-4 lg:gap-6 animate-text-reveal px-2"
+              style={{ animationDelay: "0.7s" }}
+            >
+              <div className="flex items-center gap-2 md:gap-3 px-4 md:px-6 py-2 md:py-3 bg-wine/20 backdrop-blur-md border border-wine/40 rounded-full shadow-lg hover:shadow-wine/40 transition-all duration-300 hover:scale-105 hover:border-wine/70 hover:bg-wine/30">
+                <Award className="w-4 h-4 md:w-5 md:h-5 text-pink-300" />
+                <span className="text-xs sm:text-sm md:text-base font-semibold text-white">
+                  Industry Leaders
+                </span>
               </div>
-              <div className="flex items-center gap-3 px-6 py-3 bg-wine/15 backdrop-blur-md border border-burgundy/40 rounded-full shadow-lg hover:shadow-burgundy/40 transition-all duration-300 hover:scale-105 hover:border-burgundy/70 hover:bg-burgundy/25">
-                <Target className="w-5 h-5 text-pink-200" />
-                <span className="text-sm sm:text-base font-semibold text-white">Proven Results</span>
+              <div className="flex items-center gap-2 md:gap-3 px-4 md:px-6 py-2 md:py-3 bg-wine/15 backdrop-blur-md border border-burgundy/40 rounded-full shadow-lg hover:shadow-burgundy/40 transition-all duration-300 hover:scale-105 hover:border-burgundy/70 hover:bg-burgundy/25">
+                <Target className="w-4 h-4 md:w-5 md:h-5 text-pink-200" />
+                <span className="text-xs sm:text-sm md:text-base font-semibold text-white">
+                  Proven Results
+                </span>
               </div>
-              <div className="flex items-center gap-3 px-6 py-3 bg-burgundy/20 backdrop-blur-md border border-burgundy/40 rounded-full shadow-lg hover:shadow-burgundy/40 transition-all duration-300 hover:scale-105 hover:border-burgundy/70 hover:bg-burgundy/30">
-                <Star className="w-5 h-5 text-red-300" />
-                <span className="text-sm sm:text-base font-semibold text-white">Award Winners</span>
+              <div className="flex items-center gap-2 md:gap-3 px-4 md:px-6 py-2 md:py-3 bg-burgundy/20 backdrop-blur-md border border-burgundy/40 rounded-full shadow-lg hover:shadow-burgundy/40 transition-all duration-300 hover:scale-105 hover:border-burgundy/70 hover:bg-burgundy/30">
+                <Star className="w-4 h-4 md:w-5 md:h-5 text-red-300" />
+                <span className="text-xs sm:text-sm md:text-base font-semibold text-white">
+                  Award Winners
+                </span>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce group cursor-pointer">
+        {/* Scroll Indicator - Hidden on Mobile */}
+        <div className="hidden md:block absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce group cursor-pointer">
           <div className="w-6 h-10 border-2 border-wine/40 rounded-full flex justify-center hover:border-wine/80 transition-all duration-300 group-hover:border-wine/100 group-hover:shadow-lg group-hover:shadow-wine/40">
             <div className="w-1 h-3 bg-gradient-to-b from-wine to-burgundy rounded-full mt-2 animate-pulse group-hover:h-4 transition-all duration-300"></div>
           </div>
@@ -133,7 +180,7 @@ export default function Index() {
               Beautifully crafted solutions that make your vision come alive
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <Card className="group relative border-0 bg-wine/20 backdrop-blur-xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 rounded-3xl overflow-hidden hover:shadow-wine/30">
               <div className="absolute inset-0 bg-gradient-to-br from-wine/25 to-burgundy/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -361,9 +408,7 @@ export default function Index() {
           <div className="text-center mb-20">
             <h2 className="text-6xl sm:text-7xl lg:text-8xl font-black text-white mb-8 leading-tight">
               <span className="block">Innovation</span>
-              <span className="text-disrupting-cyan">
-                Labs
-              </span>
+              <span className="text-disrupting-cyan">Labs</span>
             </h2>
             <p className="text-2xl sm:text-3xl text-white/80 max-w-4xl mx-auto leading-relaxed mb-12">
               Cutting-edge technology built for you
@@ -378,7 +423,9 @@ export default function Index() {
                 <div className="w-16 h-16 bg-disrupting-purple rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
                   <Brain className="h-8 w-8 text-white" />
                 </div>
-                <h3 className="text-3xl font-black text-white mb-4 text-center">AI</h3>
+                <h3 className="text-3xl font-black text-white mb-4 text-center">
+                  AI
+                </h3>
                 <p className="text-xl text-white/80 mb-6 leading-relaxed text-center">
                   Smart intelligence
                 </p>
@@ -412,7 +459,9 @@ export default function Index() {
                 <div className="w-16 h-16 bg-disrupting-cyan rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
                   <Zap className="h-8 w-8 text-white" />
                 </div>
-                <h3 className="text-3xl font-black text-white mb-4 text-center">Infrastructure</h3>
+                <h3 className="text-3xl font-black text-white mb-4 text-center">
+                  Infrastructure
+                </h3>
                 <p className="text-xl text-white/80 mb-6 leading-relaxed text-center">
                   Cloud infrastructure
                 </p>
@@ -446,7 +495,9 @@ export default function Index() {
                 <div className="w-16 h-16 bg-disrupting-accent rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
                   <Globe className="h-8 w-8 text-white" />
                 </div>
-                <h3 className="text-3xl font-black text-white mb-4 text-center">Future</h3>
+                <h3 className="text-3xl font-black text-white mb-4 text-center">
+                  Future
+                </h3>
                 <p className="text-xl text-white/80 mb-6 leading-relaxed text-center">
                   Next-gen tech
                 </p>
@@ -478,25 +529,37 @@ export default function Index() {
           <div className="flex flex-wrap justify-center gap-4 mb-12">
             <div className="flex items-center gap-3 px-5 py-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-full shadow-lg">
               <Zap className="w-5 h-5 text-disrupting-purple" />
-              <span className="text-sm font-semibold text-white/90">Always-on innovation squads</span>
+              <span className="text-sm font-semibold text-white/90">
+                Always-on innovation squads
+              </span>
             </div>
             <div className="flex items-center gap-3 px-5 py-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-full shadow-lg">
               <Brain className="w-5 h-5 text-disrupting-cyan" />
-              <span className="text-sm font-semibold text-white/90">Full-spectrum AI expertise</span>
+              <span className="text-sm font-semibold text-white/90">
+                Full-spectrum AI expertise
+              </span>
             </div>
             <div className="flex items-center gap-3 px-5 py-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-full shadow-lg">
               <Globe className="w-5 h-5 text-disrupting-blue" />
-              <span className="text-sm font-semibold text-white/90">Global-scale architecture</span>
+              <span className="text-sm font-semibold text-white/90">
+                Global-scale architecture
+              </span>
             </div>
             <div className="flex items-center gap-3 px-5 py-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-full shadow-lg">
               <Target className="w-5 h-5 text-disrupting-accent" />
-              <span className="text-sm font-semibold text-white/90">Impact-driven delivery</span>
+              <span className="text-sm font-semibold text-white/90">
+                Impact-driven delivery
+              </span>
             </div>
           </div>
 
           {/* CTA */}
           <div className="text-center">
-            <Button size="lg" className="group bg-white text-disrupting-dark hover:bg-white/90 px-10 py-6 text-lg font-bold rounded-2xl shadow-2xl transform transition-all duration-300 hover:scale-105" asChild>
+            <Button
+              size="lg"
+              className="group bg-white text-disrupting-dark hover:bg-white/90 px-10 py-6 text-lg font-bold rounded-2xl shadow-2xl transform transition-all duration-300 hover:scale-105"
+              asChild
+            >
               <Link to="/services">
                 <span className="flex items-center">
                   Explore Our Tech Stack
@@ -543,7 +606,9 @@ export default function Index() {
                   ROI-focused solutions that deliver measurable outcomes
                 </p>
                 <div className="px-6 py-4 bg-gradient-to-r from-disrupting-blue/10 to-disrupting-cyan/10 rounded-xl">
-                  <p className="text-base font-semibold text-disrupting-dark">Real impact on your metrics</p>
+                  <p className="text-base font-semibold text-disrupting-dark">
+                    Real impact on your metrics
+                  </p>
                 </div>
               </div>
             </Card>
@@ -561,7 +626,9 @@ export default function Index() {
                   We become part of your team
                 </p>
                 <div className="px-6 py-4 bg-gradient-to-r from-disrupting-cyan/10 to-disrupting-accent/10 rounded-xl">
-                  <p className="text-base font-semibold text-disrupting-dark">Built on trust and loyalty</p>
+                  <p className="text-base font-semibold text-disrupting-dark">
+                    Built on trust and loyalty
+                  </p>
                 </div>
               </div>
             </Card>
@@ -579,7 +646,9 @@ export default function Index() {
                   We set trends, not follow them
                 </p>
                 <div className="px-6 py-4 bg-gradient-to-r from-disrupting-accent/10 to-disrupting-pink/10 rounded-xl">
-                  <p className="text-base font-semibold text-disrupting-dark">Built for future challenges</p>
+                  <p className="text-base font-semibold text-disrupting-dark">
+                    Built for future challenges
+                  </p>
                 </div>
               </div>
             </Card>
@@ -588,7 +657,7 @@ export default function Index() {
       </section>
 
       {/* Brands Carousel */}
-      <BrandsCarousel className="bg-disrupting-dark" />
+      {/* <BrandsCarousel className="bg-disrupting-dark" /> */}
 
       {/* CTA Section */}
       <section className="py-24 sm:py-32 bg-gradient-to-br from-disrupting-purple to-disrupting-blue">
@@ -600,11 +669,12 @@ export default function Index() {
             Transform your business today
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <Button onClick={openModal} size="lg" className="bg-white text-disrupting-purple hover:bg-white/90 px-10 py-8 text-2xl font-bold rounded-xl">
+            <Button
+              onClick={openModal}
+              size="lg"
+              className="bg-white text-disrupting-purple hover:bg-white/90 px-10 py-8 text-2xl font-bold rounded-xl"
+            >
               Get Started
-            </Button>
-            <Button onClick={openModal} size="lg" variant="outline" className="border-white border-2 text-white hover:bg-white hover:text-disrupting-purple px-10 py-8 text-2xl font-bold rounded-xl">
-              Learn More
             </Button>
           </div>
         </div>
@@ -616,32 +686,83 @@ export default function Index() {
           <div className="grid md:grid-cols-3 gap-8 mb-8">
             <div>
               <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-gradient-to-br from-wine via-disrupting-purple to-burgundy rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">D</span>
+                <div className="w-8 h-8 bg-gradient-to-br from-wine via-disrupting-purple to-burgundy rounded-lg flex items-center justify-center">
+                  <span className="text-white font-bold text-sm">D</span>
+                </div>
+                <span className="text-2xl font-bold bg-gradient-to-r from-wine via-pink-400 to-burgundy bg-clip-text text-transparent">
+                  Disrupting Labs
+                </span>
               </div>
-              <span className="text-2xl font-bold bg-gradient-to-r from-wine via-pink-400 to-burgundy bg-clip-text text-transparent">Disrupting Labs</span>
-            </div>
-            <p className="text-gray-400 text-lg leading-relaxed">
-              Revolutionary digital solutions that disrupt industries
-            </p>
+              <p className="text-gray-400 text-lg leading-relaxed">
+                Revolutionary digital solutions that disrupt industries
+              </p>
             </div>
 
             <div>
               <h4 className="text-white font-bold mb-4 text-lg">Services</h4>
               <ul className="space-y-2 text-base">
-                <li><Link to="/services" className="text-gray-400 hover:text-white transition-colors">Ecommerce</Link></li>
-                <li><Link to="/services" className="text-gray-400 hover:text-white transition-colors">AI Flows</Link></li>
-                <li><Link to="/services" className="text-gray-400 hover:text-white transition-colors">CRM</Link></li>
-                <li><Link to="/services" className="text-gray-400 hover:text-white transition-colors">Growth</Link></li>
+                <li>
+                  <Link
+                    to="/services"
+                    className="text-gray-400 hover:text-white transition-colors"
+                  >
+                    Ecommerce
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/services"
+                    className="text-gray-400 hover:text-white transition-colors"
+                  >
+                    AI Flows
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/services"
+                    className="text-gray-400 hover:text-white transition-colors"
+                  >
+                    CRM
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/services"
+                    className="text-gray-400 hover:text-white transition-colors"
+                  >
+                    Growth
+                  </Link>
+                </li>
               </ul>
             </div>
 
             <div>
               <h4 className="text-white font-bold mb-4 text-lg">Links</h4>
               <ul className="space-y-2 text-base">
-                <li><Link to="/about" className="text-gray-400 hover:text-white transition-colors">About</Link></li>
-                <li><Link to="/solutions" className="text-gray-400 hover:text-white transition-colors">Solutions</Link></li>
-                <li><Link to="/contact" className="text-gray-400 hover:text-white transition-colors">Contact</Link></li>
+                <li>
+                  <Link
+                    to="/about"
+                    className="text-gray-400 hover:text-white transition-colors"
+                  >
+                    About
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/solutions"
+                    className="text-gray-400 hover:text-white transition-colors"
+                  >
+                    Solutions
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/contact"
+                    className="text-gray-400 hover:text-white transition-colors"
+                  >
+                    Contact
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>
@@ -650,7 +771,10 @@ export default function Index() {
             <p className="text-gray-400 text-base">
               © 2024 Disrupting Labs. All rights reserved.
             </p>
-            <Button onClick={openModal} className="bg-gradient-to-r from-wine to-burgundy hover:from-wine/90 hover:to-burgundy/90 text-white mt-6 px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-wine/40 transition-all duration-300 hover:scale-105">
+            <Button
+              onClick={openModal}
+              className="bg-gradient-to-r from-wine to-burgundy hover:from-wine/90 hover:to-burgundy/90 text-white mt-6 px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-wine/40 transition-all duration-300 hover:scale-105"
+            >
               Start Your Project
             </Button>
           </div>

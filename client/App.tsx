@@ -12,9 +12,29 @@ import Services from "./pages/Services";
 import Solutions from "./pages/Solutions";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
-import { ReachOutModalProvider, ReachOutModal } from "@/components/ReachOutModal";
+import {
+  ReachOutModalProvider,
+  ReachOutModal,
+} from "@/components/ReachOutModal";
+import { useVisitorTracking } from "@/hooks/useVisitorTracking";
 
 const queryClient = new QueryClient();
+
+function AppContent() {
+  useVisitorTracking();
+
+  return (
+    <Routes>
+      <Route path="/" element={<Index />} />
+      <Route path="/services" element={<Services />} />
+      <Route path="/solutions" element={<Solutions />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/contact" element={<Contact />} />
+      {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+  );
+}
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -23,15 +43,7 @@ const App = () => (
       <Sonner />
       <ReachOutModalProvider>
         <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/solutions" element={<Solutions />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <AppContent />
         </BrowserRouter>
         <ReachOutModal />
       </ReachOutModalProvider>
