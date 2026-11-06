@@ -24,4 +24,9 @@ dist-ssr
 *.sw?
 
 .config/
-!.env
+
+# Local environment and secrets. Example templates stay committable.
+.env
+.env.*
+!.env.example
+!.env.sample

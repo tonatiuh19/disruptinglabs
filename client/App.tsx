@@ -12,6 +12,7 @@ import Services from "./pages/Services";
 import Solutions from "./pages/Solutions";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import Careers from "./pages/Careers";
 import {
   ReachOutModalProvider,
   ReachOutModal,
@@ -30,6 +31,7 @@ function AppContent() {
       <Route path="/solutions" element={<Solutions />} />
       <Route path="/about" element={<About />} />
       <Route path="/contact" element={<Contact />} />
+      <Route path="/careers" element={<Careers />} />
       {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
       <Route path="*" element={<NotFound />} />
     </Routes>

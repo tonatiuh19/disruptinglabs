@@ -92,6 +92,16 @@ export default function Header({ hideOnLoad = false }: HeaderProps) {
               About
             </Link>
             <Link
+              to="/careers"
+              className={`transition-all duration-300 ${
+                isScrolled
+                  ? "text-white/90 hover:text-white drop-shadow-lg"
+                  : "text-disrupting-gray hover:text-disrupting-dark"
+              }`}
+            >
+              Careers
+            </Link>
+            <Link
               to="/contact"
               className={`transition-all duration-300 ${
                 isScrolled
@@ -172,6 +182,17 @@ export default function Header({ hideOnLoad = false }: HeaderProps) {
                 onClick={() => setIsMenuOpen(false)}
               >
                 About
+              </Link>
+              <Link
+                to="/careers"
+                className={`transition-all duration-300 px-4 py-3 text-lg font-semibold rounded-lg ${
+                  isScrolled
+                    ? "text-white/90 hover:text-white hover:bg-white/10"
+                    : "text-disrupting-gray hover:text-disrupting-dark hover:bg-disrupting-gray/10"
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Careers
               </Link>
               <Link
                 to="/contact"
